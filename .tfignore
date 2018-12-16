@@ -1,0 +1,5 @@
+/node_modules
+/dist
+/nbproject
+yarn-error.log
+.vscode

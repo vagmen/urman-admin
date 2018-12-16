@@ -1,0 +1,44 @@
+@item-height: 39px;
+
+.schedule {
+  &__modal {
+    top: 50px;
+    .ant-form {
+      padding-bottom: 20px;
+    }
+    .ant-form-item {
+      margin-bottom: 0px;
+    }
+    .ant-form-item-label {
+      display: flex;
+    }
+
+    .ant-checkbox-wrapper + .ant-checkbox-wrapper {
+      margin-left: 0px;
+    }
+  }
+  &__form-item-label {
+    padding-left: 25px;
+    height: @item-height;
+    display: flex;
+    align-items: center;
+  }
+  &__divider {
+    margin: 10px 0 !important;
+  }
+  &__checkbox-row {
+    padding-left: 25px;
+  }
+  &__label-extra {
+    height: @item-height;
+    display: flex;
+    align-items: center;
+  }
+  &__col-offset {
+    padding-left: 35px !important;
+  }
+  &__radio-style {
+    display: 'block';
+    line-height: @item-height;
+  }
+}
