@@ -1,7 +1,7 @@
 {
-    "name": "template",
+    "name": "urman-admin",
     "version": "0.0.1",
-    "description": "template",
+    "description": "urman-admin",
     "author": "Akhmetov Vagiz",
     "license": "MIT",
     "private": true,

@@ -20,7 +20,9 @@ class App extends React.Component {
                 <Layout style={{ minHeight: '100vh' }}>
                     <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                         <div className="logo">
-                            <Link to="/">главная</Link>
+                            <Link to="/">
+                                <p>URMAN</p>
+                            </Link>
                         </div>
                         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                             <Menu.Item key="1">
@@ -39,7 +41,7 @@ class App extends React.Component {
                                 <Route path="/posts/" component={Posts} />
                             </div>
                         </Content>
-                        <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+                        {/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
                     </Layout>
                 </Layout>
             </Router>
