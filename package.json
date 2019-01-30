@@ -15,8 +15,7 @@
         "start3": "webpack-dev-server --mode development",
         "start2": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --mode development",
         "start-test": "webpack-dev-server --mode development --build-type test",
-        "start-dev": "webpack-dev-server --mode development --build-type dev",
-        "heroku-postbuild": "webpack -p"
+        "start-dev": "webpack-dev-server --mode development --build-type dev"
     },
     "devDependencies": {
         "autoprefixer": "^8.4.1",
