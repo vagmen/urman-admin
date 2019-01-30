@@ -46,8 +46,8 @@ module.exports = (env, argv) => {
         },
         output: {
             publicPath: "/",
-            path: __dirname,
-            // path: path.resolve(__dirname, "dist"),
+            // path: __dirname,
+            path: path.resolve(__dirname, "dist"),
             filename: "[name].[hash].js",
             chunkFilename: "[id].[contenthash].chunk.js"
         },
