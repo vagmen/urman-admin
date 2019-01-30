@@ -10,11 +10,12 @@
         "build-test": "webpack --mode production --build-type test --progress",
         "build-dev": "webpack --mode production --build-type dev --progress",
         "build-prod": "webpack --mode production --build-type prod --progress",
-        "start": "webpack-dev-server --mode development",
+        "start": "node server.js",
+        "start1": "webpack-dev-server --mode development",
         "start2": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --mode development",
         "start-test": "webpack-dev-server --mode development --build-type test",
         "start-dev": "webpack-dev-server --mode development --build-type dev",
-        "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
+        "heroku-postbuild": "webpack -p"
     },
     "devDependencies": {
         "autoprefixer": "^8.4.1",
@@ -136,6 +137,7 @@
     "dependencies": {
         "antd": "^3.11.2",
         "axios": "^0.18.0",
+        "express": "^4.16.4",
         "mobx": "^4.8.0",
         "mobx-react": "^5.4.3",
         "moment": "^2.22.2",

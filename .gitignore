@@ -5,3 +5,4 @@ yarn-error.log
 .vscode
 report.html
 yarn.lock
+package-lock.json
