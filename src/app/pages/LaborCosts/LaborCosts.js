@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Table } from "antd";
+import { Button, Table, message } from "antd";
 
 const columns = [
     {
@@ -9,18 +9,23 @@ const columns = [
     },
     {
         title: "Статус",
-        dataIndex: "list",
-        key: "list"
+        dataIndex: "listName",
+        key: "listName"
     },
     {
-        title: "Исполнитель",
-        dataIndex: "member",
-        key: "member"
+        title: "Вид работы",
+        dataIndex: "workType",
+        key: "workType"
     },
     {
         title: "Сумма",
         dataIndex: "total",
         key: "total"
+    },
+    {
+        title: "Исполнитель",
+        dataIndex: "member",
+        key: "member"
     }
 ];
 
@@ -28,18 +33,18 @@ class LaborCosts extends Component {
     state = {
         json: null,
         dataSource: [
-            {
-                key: "1",
-                cardName: "Mike",
-                list: 32,
-                member: "10 Downing Street"
-            },
-            {
-                key: "2",
-                cardName: "John",
-                list: 42,
-                member: "10 Downing Street"
-            }
+            // {
+            //     key: "1",
+            //     cardName: "Mike",
+            //     status: 32,
+            //     member: "10 Downing Street"
+            // },
+            // {
+            //     key: "2",
+            //     cardName: "John",
+            //     status: 42,
+            //     member: "10 Downing Street"
+            // }
         ]
     };
     handleSubmit = e => {
@@ -50,24 +55,53 @@ class LaborCosts extends Component {
         fr.onload = event => {
             const result = JSON.parse(event.target.result);
             console.log("cards", result.cards);
-            const dataSource = result.cards.map(card => ({ cardName: card.name, key: card.id }));
+            const { lists } = result;
+            const dataSource = result.cards.map(card => {
+                const listName = lists.filter(list => list.id === card.idList)[0].name;
+                const parsedDesc = this.parseDesc(card.desc);
 
-            this.setState({ dataSource });
-            // const formatted = JSON.stringify(result, null, 2);
+                const children =
+                    parsedDesc &&
+                    parsedDesc.length !== 0 &&
+                    parsedDesc.map((child, index) => ({
+                        key: card.id + index,
+                        workType: child
+                    }));
+                console.log("children", children);
+
+                return { cardName: card.name, key: card.id, listName, workType: this.parseDesc(card.desc), children };
+            });
+
+            this.setState({ dataSource, lists });
         };
 
-        fr.readAsText(files.item(0));
+        if (files.item(0)) {
+            fr.readAsText(files.item(0));
+        } else {
+            message.info("Выберите JSON файл");
+        }
+    };
+
+    parseDesc = desc => {
+        const costs = desc.toLowerCase().split("стоимость")[1] || "";
+        const costsArray = costs.split("\n");
+        const filteredCostsArray = costsArray.filter(item => item !== "");
+        return filteredCostsArray;
     };
 
     render() {
-        const { json, dataSource } = this.state;
+        const { dataSource } = this.state;
         return (
             <div>
-                <input type="file" name="selectFiles" id="selectFiles" />
+                <input type="file" name="selectFiles" id="selectFiles" multiple />
+                <br />
+                <br />
                 <Button type="primary" onClick={this.handleSubmit}>
-                    Рассчитать
+                    Сгенерить таблицу
                 </Button>
-                <Table dataSource={dataSource} columns={columns} />
+                <br />
+                <br />
+                {dataSource.length !== 0 && <Table dataSource={dataSource} columns={columns} />}
             </div>
         );
     }

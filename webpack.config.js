@@ -79,8 +79,8 @@ module.exports = (env, argv) => {
                             options: {
                                 // TODO: см. https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
                                 modifyVars: {
-                                    "@icon-url": "'/fonts/antd-icons/iconfont'",
-                                    "@border-radius-base": "0px"
+                                    "@icon-url": "'/fonts/antd-icons/iconfont'"
+                                    // "@border-radius-base": "0px"
                                 }
                             }
                         }
